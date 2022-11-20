@@ -20,6 +20,7 @@
 
 ```
 git clone https://github.com/101ta28/box_pdf_downloader.git
+cd box_pdf_downloader
 pip install -r requirements.txt
 python main.py
 ```
