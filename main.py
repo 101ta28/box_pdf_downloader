@@ -1,5 +1,6 @@
 import json
 import re
+import sys
 import time
 
 import requests
@@ -13,8 +14,10 @@ def main():
 	box_url = input("Enter Box URL: ")
 	if box_url == "":
 		print("URL cannot be empty")
+		sys.exit(1)
 	if box_url.startswith("https://app.box.com/s/") == False:
 		print("Invalid URL")
+		sys.exit(1)
 	pdf_url = get_url(box_url)
 	data = requests.get(pdf_url, stream=True)
 	if data.status_code == 200:
@@ -22,8 +25,10 @@ def main():
 			for chunk in data.iter_content(1024):
 				f.write(chunk)
 		print("File saved as file.pdf")
+		sys.exit(0)
 	else:
 		print("Error downloading file")
+		sys.exit(1)
 
 
 def get_url(box_url):
